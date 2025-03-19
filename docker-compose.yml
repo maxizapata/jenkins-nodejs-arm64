@@ -1,0 +1,17 @@
+# docker-compose.yaml
+services:
+  jenkins:
+    image: maxizapata/jenkins-nodejs-arm64:v1
+    restart: on-failure
+    #privileged: true
+    #user: root
+    ports:
+     - 3000:3000
+     - 9900:8080
+     - 50000:50000 # For master/workers communication
+    container_name: jenkins
+    volumes:
+     - ~/jenkins_configuration:/var/jenkins_home
+     - /var/run/docker.sock:/var/run/docker.sock
+       # Pending to add chmod 666 /var/run/docker.sock
+
